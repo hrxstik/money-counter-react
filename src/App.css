@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .App {
+    @apply bg-double-bubble min-h-screen animate-flow 
+    dark:bg-double-bubble-dark;
+  }
+}
