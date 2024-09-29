@@ -2,9 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply text-2xl font-bold;
+  }
+  input {
+    @apply max-w-72 text-black border-2 rounded-lg px-3;
+  }
+  label {
+    @apply select-none ml-1 mr-3;
+  }
+}
+@layer components {
+  .content {
+    @apply flex flex-col gap-3;
+  }
+}
 @layer utilities {
   .App {
-    @apply bg-double-bubble min-h-screen animate-flow 
-    dark:bg-double-bubble-dark;
+    @apply bg-double-bubble min-h-screen animate-flow
+    grid place-items-center
+    dark:bg-double-bubble-dark dark:text-white;
+  }
+  .button {
+    @apply rounded-lg border-2 px-3 py-1 bg-white
+    dark:bg-neutral-700 select-none;
+  }
+  .disabledButton {
+    @apply opacity-50;
+  }
+  .display {
+    @apply button text-sky-600 dark:text-white max-w-fit;
   }
 }
