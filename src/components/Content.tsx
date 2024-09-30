@@ -2,7 +2,6 @@ import React from 'react';
 import Currency from './Currency';
 import StartButton from './StartButton';
 import StopButton from './StopButton';
-import { IntervalProvider } from './IntervalContext';
 
 const Content: React.FC = () => {
   const [inputText, setInputText] = React.useState('');
@@ -35,10 +34,8 @@ const Content: React.FC = () => {
       <p>Выберите валюту</p>
       <Currency setCurrency={setCurrency} />
       <div className="flex gap-3">
-        <IntervalProvider>
-          <StartButton {...buttonProps} salary={salary} />
-          <StopButton {...buttonProps} />
-        </IntervalProvider>
+        <StartButton {...buttonProps} salary={salary} />
+        <StopButton {...buttonProps} />
       </div>
       {counter !== 0 && (
         <div className="display">

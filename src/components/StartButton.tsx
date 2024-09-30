@@ -8,16 +8,26 @@ type props = {
 };
 const StartButton: React.FC<props> = ({ setCounter, setIsCounting, isCounting, salary }) => {
   const startCounting = () => {
-    setInterval(addMoney, 100);
     setIsCounting(true);
-    function addMoney() {
-      setCounter((prev) => prev + salary / 36000);
-    }
   };
+  React.useEffect(() => {
+    let interval: NodeJS.Timeout | undefined;
+    if (isCounting) {
+      interval = setInterval(() => {
+        setCounter((prev) => prev + salary / 36000);
+      }, 100);
+      return () => clearInterval(interval);
+    }
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [isCounting]);
 
   return (
-    <div className={`button ${isCounting ? 'disabledButton' : ''}`}>
-      <button onClick={() => startCounting()} disabled={isCounting}>
+    <div className={`button ${isCounting || !salary ? 'disabledButton' : ''}`}>
+      <button onClick={() => startCounting()} disabled={isCounting || !salary}>
         Запуск счетчика
       </button>
     </div>
